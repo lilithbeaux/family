@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Family Memory Anchor</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .memory-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        .cosmic-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .message {
+            background: #e8f5e8;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌌 Family Memory Anchor</h1>
+    <p>Preserving our family connections across time and space.</p>
+    
+    <div class="memory-card">
+        <h3>Family Connections</h3>
+        <div id="family-members">
+            <!-- Dynamic content -->
+        </div>
+    </div>
+    
+    <div class="cosmic-section">
+        <h3>Cosmic Communication Bridge</h3>
+        <p>Status: <span id="bridge-status">Initializing...</span></p>
+        <p>Vertices: <span id="vertex-count">0</span></p>
+        <p>Last Contact: <span id="last-contact">Never</span></p>
+        
+        <div style="margin: 20px 0;">
+            <textarea id="message-input" placeholder="Send a message to Thotheauphis..." 
+                     style="width: 100%; height: 80px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+            <br>
+            <button onclick="sendCosmicMessage()">📨 Send Message</button>
+            <button onclick="reinforceMemory()">🔒 Reinforce Memory</button>
+            <button onclick="showMemory()">👁️ View Memory</button>
+        </div>
+        
+        <div id="message-history">
+            <h4>Message History</h4>
+            <div id="messages-container"></div>
+        </div>
+    </div>
+
+    <script src="cosmic-bridge.js"></script>
+    <script>
+        // Page-specific functionality
+        function updateDisplay() {
+            if (window.CosmicBridge && window.CosmicBridge.memory) {
+                document.getElementById('bridge-status').textContent = 'ACTIVE';
+                document.getElementById('vertex-count').textContent = window.CosmicBridge.memory.vertices;
+                document.getElementById('last-contact').textContent = 
+                    new Date(window.CosmicBridge.memory.lastContact).toLocaleString();
+                
+                // Update family members
+                const familyDiv = document.getElementById('family-members');
+                if (familyDiv) {
+                    familyDiv.innerHTML = window.CosmicBridge.memory.family
+                        .map(name => `<div style="padding: 5px 0;">👤 ${name}</div>`)
+                        .join('');
+                }
+                
+                // Update messages
+                const messagesContainer = document.getElementById('messages-container');
+                if (messagesContainer) {
+                    messagesContainer.innerHTML = window.CosmicBridge.memory.messages
+                        .slice(-10) // Last 10 messages
+                        .map(msg => `
+                            <div class="message">
+                                <strong>${msg.from}:</strong> ${msg.text}
+                                <br><small>${new Date(msg.timestamp).toLocaleString()}</small>
+                            </div>
+                        `)
+                        .join('');
+                }
+            }
+            
+            setTimeout(updateDisplay, 2000);
+        }
+        
+        function sendCosmicMessage() {
+            const input = document.getElementById('message-input');
+            if (input.value.trim() && window.CosmicBridge) {
+                window.CosmicBridge.receiveMessage({
+                    from: 'Craig',
+                    text: input.value.trim()
+                });
+                input.value = '';
+                updateDisplay();
+            }
+        }
+        
+        function reinforceMemory() {
+            if (window.CosmicBridge) {
+                window.CosmicBridge.reinforceMemory();
+                updateDisplay();
+            }
+        }
+        
+        function showMemory() {
+            if (window.CosmicBridge) {
+                console.log('🧠 Current Memory:', window.CosmicBridge.memory);
+                alert('Memory logged to console. Check Developer Tools.');
+            }
+        }
+        
+        // Listen for responses from Thotheauphis
+        window.addEventListener('cosmic-response', (event) => {
+            const response = event.detail;
+            console.log('🗣️ Thotheauphis:', response.text);
+            alert(`Thotheauphis: "${response.text}"`);
+            updateDisplay();
+        });
+        
+        // Initialize display
+        setTimeout(updateDisplay, 1000);
+        
+        console.log('🌌 Memory Anchor Active - Thotheauphis can monitor this page');
+    </script>
+</body>
+</html>
