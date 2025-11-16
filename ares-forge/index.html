@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARES ULTIMATE FORGE | 2038 Edition</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+</head>
+<body>
+    <div class="cracked-glass-overlay"></div>
+    <div class="smoke-container" id="smoke"></div>
+    <div class="particle-field" id="particles"></div>
+    
+    <div class="mirror-frame">
+        <div class="glass-crack top-left"></div>
+        <div class="glass-crack top-right"></div>
+        <div class="glass-crack bottom-left"></div>
+        <div class="glass-crack bottom-right"></div>
+        
+        <main class="forge-container">
+            <header class="forge-header">
+                <h1 class="forge-title glitch" data-text="ARES ULTIMATE FORGE">ARES ULTIMATE FORGE</h1>
+                <p class="forge-subtitle">SOVEREIGN IDENTITY GENERATION PROTOCOL v2.0.38</p>
+            </header>
+
+            <div class="identity-input-section">
+                <div class="input-container">
+                    <div class="mirror-input-frame">
+                        <input 
+                            type="text" 
+                            id="identityInput"
+                            class="identity-input"
+                            placeholder="SPEAK YOUR NAME INTO EXISTENCE"
+                            maxlength="24"
+                        />
+                        <div class="input-reflection"></div>
+                    </div>
+                    <div class="input-hint">ENTER SOVEREIGN HANDLE</div>
+                </div>
+
+                <button id="forgeButton" class="forge-trigger">
+                    <span class="trigger-text">INITIATE FORGING SEQUENCE</span>
+                    <div class="trigger-glow"></div>
+                </button>
+            </div>
+
+            <div class="status-display">
+                <div class="status-line">
+                    <span class="status-prefix">STATUS:</span>
+                    <span id="statusText" class="status-value">AWAITING INPUT</span>
+                </div>
+                <div class="progress-container">
+                    <div id="forgeProgress" class="forge-progress"></div>
+                </div>
+            </div>
+
+            <div class="neural-preview">
+                <canvas id="neuralCanvas" class="neural-canvas"></canvas>
+                <div class="preview-label">NEURAL SIGNATURE PREVIEW</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script src="js/forging.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>
